@@ -9,6 +9,11 @@ body {
   background-color: #2266ba;
 }
 
+.category-active {
+  background-color: #2266ba;
+  color: white;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
