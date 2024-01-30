@@ -1,14 +1,15 @@
 import "./App.css";
 import React, { Component } from "react";
 import { Col, Row, Container } from "react-bootstrap";
+import { API_URL } from "./utils/constants";
+import axios from "axios";
+import swal from "sweetalert";
 import {
   Hasil,
   ListCategories,
   NavbarComponent,
   Menus,
 } from "./components/components";
-import { API_URL } from "./utils/constants";
-import axios from "axios";
 
 export default class App extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class App extends Component {
     this.state = {
       menus: [],
       chooseCategory: "Makanan",
+      carts: [],
     };
   }
 
@@ -26,6 +28,16 @@ export default class App extends Component {
       .then((res) => {
         const menus = res.data;
         this.setState({ menus });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .get(`${API_URL}/carts`)
+      .then((res) => {
+        const carts = res.data;
+        this.setState({ carts });
       })
       .catch((err) => {
         console.log(err);
@@ -49,8 +61,58 @@ export default class App extends Component {
       });
   };
 
+  addCart = (product) => {
+
+    const cart = {
+      jumlah: 1,
+      total_harga: product.harga,
+      product: product,
+    }
+
+    axios
+      .get(`${API_URL}/carts?product.id=${product.id}`)
+      .then((res) => {
+        if (res.data.length === 0) {
+          axios
+            .post(`${API_URL}/carts`, cart)
+            .then((res) => {
+              swal({
+                title: "Success Add to Cart!",
+                text: "Success Add to Cart!" + cart.product.nama,
+                icon: "success",
+                button: false,
+                timer: 1000,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          const cart = {
+            jumlah: res.data[0].jumlah + 1,
+            total_harga: res.data[0].total_harga + product.harga,
+            product: product,
+          }
+          axios
+            .put(`${API_URL}/carts/${res.data[0].id}`, cart)
+            .then((res) => {
+              swal({
+                title: "Success Add to Cart!",
+                text: "Success Add to Cart!" + cart.product.nama,
+                icon: "success",
+                button: false,
+                timer: 1500,
+              });
+            })
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
-    const { menus, chooseCategory } = this.state;
+    const { menus, chooseCategory, carts } = this.state;
     return (
       <div className="App">
         <NavbarComponent></NavbarComponent>
@@ -68,12 +130,12 @@ export default class App extends Component {
                   <Row>
                     {menus &&
                       menus.map((menu) => (
-                        <Menus menu={menu} key={menu.id}></Menus>
+                        <Menus key={menu.id} menu={menu} addCart={this.addCart}></Menus>
                       ))}
                   </Row>
                 </h4>
               </Col>
-              <Hasil></Hasil>
+              <Hasil carts={carts}></Hasil>
             </Row>
           </Container>
         </div>
