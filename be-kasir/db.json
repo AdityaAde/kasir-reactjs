@@ -219,9 +219,8 @@
       }
     },
     {
-      "id": "f76e",
-      "jumlah": 1,
-      "total_harga": 10000,
+      "jumlah": 2,
+      "total_harga": 20000,
       "product": {
         "id": "6",
         "kode": "K-06",
@@ -233,12 +232,12 @@
           "id": 1,
           "nama": "Makanan"
         }
-      }
+      },
+      "id": "f76e"
     },
     {
-      "id": "badf",
-      "jumlah": 1,
-      "total_harga": 14000,
+      "jumlah": 2,
+      "total_harga": 28000,
       "product": {
         "id": "2",
         "kode": "K-02",
@@ -246,6 +245,24 @@
         "harga": 14000,
         "is_ready": true,
         "gambar": "nasi-goreng-telor.jpg",
+        "category": {
+          "id": 1,
+          "nama": "Makanan"
+        }
+      },
+      "id": "badf"
+    },
+    {
+      "id": "ba1f",
+      "jumlah": 1,
+      "total_harga": 18000,
+      "product": {
+        "id": "4",
+        "kode": "K-04",
+        "nama": "Lontong Opor Ayam",
+        "harga": 18000,
+        "is_ready": true,
+        "gambar": "lontong-opor-ayam.jpg",
         "category": {
           "id": 1,
           "nama": "Makanan"
