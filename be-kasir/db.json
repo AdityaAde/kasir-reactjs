@@ -185,8 +185,8 @@
   ],
   "carts": [
     {
-      "jumlah": 4,
-      "total_harga": 64000,
+      "jumlah": 6,
+      "total_harga": 96000,
       "product": {
         "id": "1",
         "kode": "K-01",
@@ -229,6 +229,23 @@
         "harga": 10000,
         "is_ready": true,
         "gambar": "bakso.jpg",
+        "category": {
+          "id": 1,
+          "nama": "Makanan"
+        }
+      }
+    },
+    {
+      "id": "badf",
+      "jumlah": 1,
+      "total_harga": 14000,
+      "product": {
+        "id": "2",
+        "kode": "K-02",
+        "nama": "Nasi Goreng Telur",
+        "harga": 14000,
+        "is_ready": true,
+        "gambar": "nasi-goreng-telor.jpg",
         "category": {
           "id": 1,
           "nama": "Makanan"
