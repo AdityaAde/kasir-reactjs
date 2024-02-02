@@ -183,17 +183,68 @@
       }
     }
   ],
-  "carts": [],
+  "carts": [
+    {
+      "jumlah": 2,
+      "total_harga": 32000,
+      "product": {
+        "id": "1",
+        "kode": "K-01",
+        "nama": "Sate Ayam",
+        "harga": 16000,
+        "is_ready": true,
+        "gambar": "sate-ayam.jpg",
+        "category": {
+          "id": 1,
+          "nama": "Makanan"
+        }
+      },
+      "id": "ab31"
+    },
+    {
+      "id": "d2c1",
+      "jumlah": 1,
+      "total_harga": 12000,
+      "product": {
+        "id": "3",
+        "kode": "K-03",
+        "nama": "Nasi Rames",
+        "harga": 12000,
+        "is_ready": true,
+        "gambar": "nasi-rames.jpg",
+        "category": {
+          "id": 1,
+          "nama": "Makanan"
+        }
+      }
+    },
+    {
+      "id": "fb9d",
+      "jumlah": 1,
+      "total_harga": 14000,
+      "product": {
+        "id": "7",
+        "kode": "K-07",
+        "nama": "Mie Ayam Bakso",
+        "harga": 14000,
+        "is_ready": true,
+        "gambar": "mie-ayam-bakso.jpg",
+        "category": {
+          "id": 1,
+          "nama": "Makanan"
+        }
+      }
+    }
+  ],
   "orders": [
     {
-      "id": "9b53",
-      "total_bayar": 46000,
+      "total_bayar": 60000,
       "menus": [
         {
           "jumlah": 2,
           "total_harga": 32000,
           "product": {
-            "id": "1",
+            "id": 1,
             "kode": "K-01",
             "nama": "Sate Ayam",
             "harga": 16000,
@@ -204,14 +255,14 @@
               "nama": "Makanan"
             }
           },
-          "id": "9f24"
+          "keterangan": "Semuanya Pedas",
+          "id": 1
         },
         {
-          "id": "5cb8",
-          "jumlah": 1,
-          "total_harga": 14000,
+          "jumlah": 2,
+          "total_harga": 28000,
           "product": {
-            "id": "2",
+            "id": 2,
             "kode": "K-02",
             "nama": "Nasi Goreng Telur",
             "harga": 14000,
@@ -221,17 +272,19 @@
               "id": 1,
               "nama": "Makanan"
             }
-          }
+          },
+          "id": 3
         }
-      ]
+      ],
+      "id": "1"
     },
     {
-      "id": "3ba9",
-      "total_bayar": 46000,
+      "id": "1708",
+      "total_bayar": 133000,
       "menus": [
         {
-          "jumlah": 2,
-          "total_harga": 32000,
+          "jumlah": 6,
+          "total_harga": 96000,
           "product": {
             "id": "1",
             "kode": "K-01",
@@ -244,10 +297,44 @@
               "nama": "Makanan"
             }
           },
-          "id": "9f24"
+          "id": "99de"
         },
         {
-          "id": "5cb8",
+          "id": "337e",
+          "jumlah": 1,
+          "total_harga": 13000,
+          "product": {
+            "id": "5",
+            "kode": "K-05",
+            "nama": "Mie Goreng",
+            "harga": 13000,
+            "is_ready": true,
+            "gambar": "mie-goreng.jpg",
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          }
+        },
+        {
+          "id": "f76e",
+          "jumlah": 1,
+          "total_harga": 10000,
+          "product": {
+            "id": "6",
+            "kode": "K-06",
+            "nama": "Bakso",
+            "harga": 10000,
+            "is_ready": true,
+            "gambar": "bakso.jpg",
+            "category": {
+              "id": 1,
+              "nama": "Makanan"
+            }
+          }
+        },
+        {
+          "id": "badf",
           "jumlah": 1,
           "total_harga": 14000,
           "product": {
