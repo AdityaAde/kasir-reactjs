@@ -1,15 +1,16 @@
-import "../App.css";
-import React, { Component } from "react";
-import { Col, Row, Container } from "react-bootstrap";
-import { API_URL } from "../utils/constants";
 import axios from "axios";
+import React, { Component } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import swal from "sweetalert";
+import "../App.css";
 import {
     Hasil,
     ListCategories,
     Menus,
     NavbarComponent,
 } from "../components/components";
+import { API_URL } from "../utils/constants";
+
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -79,16 +80,17 @@ export default class HomePage extends Component {
 
     addCart = (product) => {
 
-        const cart = {
-            jumlah: 1,
-            total_harga: product.harga,
-            product: product,
-        }
+   
 
         axios
             .get(`${API_URL}/carts?product.id=${product.id}`)
             .then((res) => {
                 if (res.data.length === 0) {
+                    const cart = {
+                        jumlah: 1,
+                        total_harga: product.harga,
+                        product: product,
+                    }
                     axios
                         .post(`${API_URL}/carts`, cart)
                         .then((res) => {

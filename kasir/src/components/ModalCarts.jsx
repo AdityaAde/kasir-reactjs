@@ -1,8 +1,8 @@
-import React from "react";
-import { Modal, Button, Form, FormGroup, FormLabel } from "react-bootstrap";
-import { numberWithCommas } from "../utils/format";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Button, Form, FormGroup, FormLabel, Modal } from "react-bootstrap";
+import { numberWithCommas } from "../utils/format";
 
 const ModalCarts = ({
   showModal,
@@ -14,6 +14,8 @@ const ModalCarts = ({
   kurang,
   changeHandler,
   handleSubmit,
+  totalPrice,
+  deleteOrder,
 }) => {
   if (cartDetail) {
     return (
@@ -27,7 +29,7 @@ const ModalCarts = ({
               <Form.Label>
                 <strong>Total Harga</strong>{" "}
               </Form.Label>
-              <p>Rp. {numberWithCommas(cartDetail.product.harga)}</p>
+              <p>Rp. {numberWithCommas(totalPrice)}</p>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>
@@ -59,7 +61,7 @@ const ModalCarts = ({
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
+          <Button variant="danger" onClick={() => deleteOrder(cartDetail.id)}>
             Hapus Pesanan
           </Button>
           <Button variant="primary" onClick={handleSubmit}>

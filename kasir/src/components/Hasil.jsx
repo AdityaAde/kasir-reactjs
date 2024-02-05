@@ -1,7 +1,10 @@
+import axios from "axios";
 import React, { Component } from "react";
 import { Badge, Col, ListGroup, Row } from "react-bootstrap";
+import swal from "sweetalert";
+import { API_URL } from "../utils/constants";
 import { numberWithCommas } from "../utils/format";
-import { TotalOrders, ModalCarts } from "./components";
+import { ModalCarts, TotalOrders } from "./components";
 
 export default class Hasil extends Component {
   constructor(props) {
@@ -12,6 +15,7 @@ export default class Hasil extends Component {
       cartDetail: false,
       jumlah: 0,
       information: "",
+      totalPrice: 0,
     };
   }
 
@@ -21,6 +25,7 @@ export default class Hasil extends Component {
       cartDetail: cart,
       jumlah: cart.jumlah,
       information: cart.information,
+      totalPrice: cart.total_harga,
     });
   };
 
@@ -33,6 +38,7 @@ export default class Hasil extends Component {
   tambah = () => {
     this.setState({
       jumlah: this.state.jumlah + 1,
+      totalPrice: this.state.cartDetail.product.harga * (this.state.jumlah + 1),
     });
   };
 
@@ -41,6 +47,7 @@ export default class Hasil extends Component {
     }
     this.setState({
       jumlah: this.state.jumlah - 1,
+      totalPrice: this.state.cartDetail.product.harga * (this.state.jumlah - 1),
     });
   };
 
@@ -52,8 +59,47 @@ export default class Hasil extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.handleClose();
 
-    console.log("Hai" + this.state.information);
+    const data = {
+      jumlah: this.state.jumlah,
+      total_harga: this.state.totalPrice,
+      product: this.state.cartDetail.product,
+      information: this.state.information,
+    };
+    axios
+      .put(`${API_URL}/carts/${this.state.cartDetail.id}`, data)
+      .then((_) => {
+        swal({
+          title: "Update pesanan",
+          text: "Success Update pesanan" + data.product.nama,
+          icon: "success",
+          button: false,
+          timer: 1000,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  deleteOrder = (id) => {
+    this.handleClose();
+
+    axios
+      .delete(`${API_URL}/carts/${id}`)
+      .then((_) => {
+        swal({
+          title: "Hapus pesanan",
+          text: "Success Hapus pesanan" + this.state.cartDetail.product.nama,
+          icon: "error",
+          button: false,
+          timer: 1000,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -69,8 +115,7 @@ export default class Hasil extends Component {
             {carts.map((cart) => (
               <ListGroup.Item
                 key={cart.id}
-                onClick={() => this.handleShow(cart)}
-              >
+                onClick={() => this.handleShow(cart)}>
                 <Row>
                   <Col xs={2}>
                     <h4>
@@ -99,6 +144,7 @@ export default class Hasil extends Component {
               kurang={this.kurang}
               changeHandler={this.changeHandler}
               handleSubmit={this.handleSubmit}
+              deleteOrder={this.deleteOrder}
             />
           </ListGroup>
         )}

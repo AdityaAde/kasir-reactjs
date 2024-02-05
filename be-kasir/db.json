@@ -185,23 +185,6 @@
   ],
   "carts": [
     {
-      "jumlah": 2,
-      "total_harga": 32000,
-      "product": {
-        "id": "1",
-        "kode": "K-01",
-        "nama": "Sate Ayam",
-        "harga": 16000,
-        "is_ready": true,
-        "gambar": "sate-ayam.jpg",
-        "category": {
-          "id": 1,
-          "nama": "Makanan"
-        }
-      },
-      "id": "ab31"
-    },
-    {
       "id": "d2c1",
       "jumlah": 1,
       "total_harga": 12000,
@@ -212,23 +195,6 @@
         "harga": 12000,
         "is_ready": true,
         "gambar": "nasi-rames.jpg",
-        "category": {
-          "id": 1,
-          "nama": "Makanan"
-        }
-      }
-    },
-    {
-      "id": "fb9d",
-      "jumlah": 1,
-      "total_harga": 14000,
-      "product": {
-        "id": "7",
-        "kode": "K-07",
-        "nama": "Mie Ayam Bakso",
-        "harga": 14000,
-        "is_ready": true,
-        "gambar": "mie-ayam-bakso.jpg",
         "category": {
           "id": 1,
           "nama": "Makanan"
